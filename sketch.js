@@ -1124,11 +1124,13 @@ let testsTaken = 0;
 let testStarted = false;
 let isCorrect = true;
 
+
+
 function setup() {
-  createCanvas(800, 650);
+  createCanvas(800, 650).parent('main');
   selectExcerpt();
   let input = createInput();
-  input.position(20, 520); // Moved input box further down
+  input.position(20, 520); 
   input.input(updateUserInput);
   input.size(width - 40);
   input.style('font-size', '18px');
@@ -1137,7 +1139,9 @@ function setup() {
   textFont('monospace');
   input.elt.addEventListener('keydown', handleEnter);
   input.elt.addEventListener('keydown', restartSession);
+  input.parent('main'); // This line is added to set the parent of the input field to the main element
 }
+
 
 function draw() {
   background(220);
