@@ -1139,7 +1139,6 @@ function setup() {
   textFont('monospace');
   input.elt.addEventListener('keydown', handleEnter);
   input.elt.addEventListener('keydown', restartSession);
-  input.parent('main'); // This line is added to set the parent of the input field to the main element
 }
 
 
