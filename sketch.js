@@ -1127,10 +1127,10 @@ let isCorrect = true;
 
 
 function setup() {
-  createCanvas(800, 650).parent('main');
+  createCanvas(800, 650);
   selectExcerpt();
   let input = createInput();
-  input.position(20, 520); 
+  input.position(20, 520); // Moved input box further down
   input.input(updateUserInput);
   input.size(width - 40);
   input.style('font-size', '18px');
