@@ -1142,16 +1142,20 @@ function setup() {
 
 function draw() {
   background('#8B4513'); // Dark Gold Background
-  fill(isCorrect ? 255 : 255, 0, 0);  // White text, red for incorrect input
+  
+  fill(isCorrect || userInput === "" ? 255 : 255, 0, 0); 
   text(excerpts[currentExcerptIndex], 20, 40, width - 40, height - 300);
+
   fill(255);  // White text for the stats and instructions
   text(`WPM: ${wpm}`, 20, height - 230);
   text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 20, height - 200);
   text(`Tests Taken: ${testsTaken}`, 20, height - 170);
   text(`Press Tab to restart session`, 20, height - 30);
+
   stroke(255); // Changed line color to white for visibility
   line(20, height - 250, width - 20, height - 250);
 }
+
 
 
 function selectExcerpt() {
