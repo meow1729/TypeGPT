@@ -1144,14 +1144,19 @@ function setup() {
 function draw() {
   background(220);
   fill(isCorrect ? 0 : 255, 0, 0);
+
+  textSize(24); // Increased text size for the prompt
   text(excerpts[currentExcerptIndex], 20, 40, width - 40, height - 300);
+
+  textSize(12); // Resetting text size back to default for other texts
   fill(0);
   text(`WPM: ${wpm}`, 20, height - 230);
   text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 20, height - 200);
   text(`Tests Taken: ${testsTaken}`, 20, height - 170);
-  text(`Press Tab to restart session`, 20, height - 30); // Moved instructional text down
+  text(`Press Tab to restart session`, 20, height - 30); 
   line(20, height - 250, width - 20, height - 250);
 }
+
 
 
 
