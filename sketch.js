@@ -1102,17 +1102,6 @@ excerpts = excerpts.concat([
     `Giga Chad - The most extreme version of "Chad". Trump was the political Giga Chad; Biden, silent observer, sketched portraits of quietude.`
 ]);
 
-// ... the rest of your code remains the same
-
-
-
-
-
-
-
-
-
-
 
 
 let currentExcerptIndex = 0;
@@ -1125,19 +1114,32 @@ let testStarted = false;
 let isCorrect = true;
 
 
+
+
 function setup() {
-  createCanvas(1000, 650);
+  let margin = 100; // Margin from all sides
+  createCanvas(windowWidth - margin, windowHeight - margin);
+  centerCanvas(); // Center the canvas on the screen
+  
   selectExcerpt();
+  
   let input = createInput();
-  input.position(20, 520); // Moved input box further down
+  input.position(margin / 2, height - 80); // Dynamically position the input box
   input.input(updateUserInput);
   input.size(width - 40);
   input.style('font-size', '18px');
   input.style('font-family', 'monospace');
   textSize(18);
   textFont('monospace');
+  
   input.elt.addEventListener('keydown', handleEnter);
   input.elt.addEventListener('keydown', restartSession);
+}
+
+function centerCanvas() {
+  let x = (windowWidth - width) / 2;
+  let y = (windowHeight - height) / 2;
+  canvas.position(x, y);
 }
 
 
@@ -1157,6 +1159,11 @@ function draw() {
   line(20, height - 250, width - 20, height - 250);
 }
 
+function windowResized() {
+  let margin = 100;
+  resizeCanvas(windowWidth - margin, windowHeight - margin);
+  centerCanvas();
+}
 
 
 
