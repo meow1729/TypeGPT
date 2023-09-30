@@ -1127,9 +1127,14 @@ function setup() {
     input = createInput();
     input.input(updateUserInput);
     input.style('font-size', '20px');
-    input.style('font-family', 'Courier New'); // Updated the font type
-    input.style('color', '#fff');
-    input.style('background-color', '#444');
+    input.style('font-family', 'Courier New');
+    input.style('color', '#00FF00'); // Changed text color to green
+    input.style('background-color', '#000000'); // Changed background color to black
+    input.style('border', 'none'); // Removed border
+    input.style('outline', 'none'); // Removed outline
+
+    // Optional: Green blinking cursor for a full terminal feel
+    input.elt.style.caretColor = "#00FF00";
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
@@ -1144,7 +1149,7 @@ function draw() {
 
     textSize(24);
     fill(isCorrect ? '#32CD32' : '#FF0000');
-    textFont('Courier New', 24); // Updated the font type
+    textFont('Courier New', 24);
     textStyle(BOLD);
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
@@ -1158,7 +1163,7 @@ function draw() {
 function drawStatistics() {
     textSize(18);
     fill(200);
-    textFont('Courier New'); // Updated the font type
+    textFont('Courier New');
     let textYPosition = height - 100;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);
@@ -1171,8 +1176,8 @@ function drawStatistics() {
 function drawTheme() {
     textSize(20); 
     fill(200);
-    textFont('Courier New'); // Updated the font type
-    text(`Current theme - ${theme}`, 40, height - 220); 
+    textFont('Courier New');
+    text(`Current theme - ${theme}`, 40, height - 220); // Corrected the y-coordinate
 }
 
 function centerCanvas() {
@@ -1256,3 +1261,4 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
+
