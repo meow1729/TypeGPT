@@ -18,7 +18,7 @@
 
         header {
             position: absolute;
-            top: 15px;  /* Adjusted from 0 to 15px */
+            top: 15px;  
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -36,6 +36,27 @@
             color: white; 
         }
 
+        footer {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            background-color: #3a0000;
+        }
+
+        footer img {
+            height: 75px;
+        }
+
+        footer h2 {
+            margin: 0;
+            padding-right: 20px;
+            color: white;
+            font-size: 18px; /* Adjust font size as needed */
+        }
+
         main {
             flex-grow: 1;
         }
@@ -49,6 +70,10 @@
         <h1>TypeGPT v0.1</h1>
     </header>
     <main></main>
+    <footer>
+        <h2>Powered by ChatGPT 4.0</h2>
+        <img src="logo2.png" alt="Logo2">  <!-- Update the source to your second logo -->
+    </footer>
     <script src="sketch.js"></script>
 </body>
 
