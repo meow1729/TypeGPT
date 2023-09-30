@@ -1127,7 +1127,7 @@ function setup() {
     input = createInput();
     input.input(updateUserInput);
     input.style('font-size', '20px');
-    input.style('font-family', 'monospace');
+    input.style('font-family', 'Courier New'); // Updated the font type
     input.style('color', '#fff');
     input.style('background-color', '#444');
 
@@ -1144,7 +1144,7 @@ function draw() {
 
     textSize(24);
     fill(isCorrect ? '#32CD32' : '#FF0000');
-    textFont('Courier New', 24);
+    textFont('Courier New', 24); // Updated the font type
     textStyle(BOLD);
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
@@ -1158,6 +1158,7 @@ function draw() {
 function drawStatistics() {
     textSize(18);
     fill(200);
+    textFont('Courier New'); // Updated the font type
     let textYPosition = height - 100;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);
@@ -1170,8 +1171,8 @@ function drawStatistics() {
 function drawTheme() {
     textSize(20); 
     fill(200);
-    textFont('Consolas'); 
-    text(`Current theme - ${theme}`, 40, height - 200);  // Changed the y-coordinate here
+    textFont('Courier New'); // Updated the font type
+    text(`Current theme - ${theme}`, 40, height - 220); 
 }
 
 function centerCanvas() {
