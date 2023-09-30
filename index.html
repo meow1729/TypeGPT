@@ -7,56 +7,48 @@
     <title>TypeGPT v0.1.0</title>
     <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
     <style>
-        body, html {
-            margin: 0;
-            height: 100%;
+        body {
             background-color: #3a0000;
-            color: white; 
-        }
-
-        .header-container {
-            position: absolute;
-            top: 10px; 
-            left: 10px; 
-            max-width: 180px; 
-        }
-
-        .header-container img {
-            height: 50px; /* Setting the height to 50px as per requirement */
-            width: auto;
-        }
-
-        a {
-            color: white; 
-            text-decoration: underline; 
-        }
-
-        h2, p {
-            margin: 5px 0; 
-        }
-
-        main {
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            height: 100vh;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 20px;
+            background-color: #3a0000; /* Adjust the background color to match your design */
+        }
+
+        header img {
+            height: 50px; /* Adjust logo size as needed */
+        }
+
+        main {
+            flex-grow: 1;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
 </head>
 
 <body>
-    <div class="header-container">
-        <img src="logo.png" alt="Logo">
-        <h2>TypeGPT v0.1.0</h2>
+    <header>
+        <img src="logo.png" alt="Logo"> <!-- Replace with the path to your logo image -->
+        <h1>TypeGPT v0.1.0</h1>
         <p>
             "Don't type like a 
-            <a href="https://monkeytype.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://monkeytype.com/" target="_blank" rel="noopener noreferrer" style="color: white;">
                 monkey
             </a>, 
             Increase your wpm intelligently using the power of artificial intelligence LLMs"
         </p>
-    </div>
+    </header>
     <main></main>
     <script src="sketch.js"></script>
 </body>
