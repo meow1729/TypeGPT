@@ -1115,6 +1115,7 @@ let isCorrect = true;
 let input;
 let typedChars = 0;
 let incorrectChars = 0;
+let theme = "Vocab builder (TRUMP2024)"; 
 
 function setup() {
     let margin = 200;
@@ -1128,7 +1129,7 @@ function setup() {
     input.style('font-size', '20px');
     input.style('font-family', 'monospace');
     input.style('color', '#fff');
-    input.style('background-color', '#444'); 
+    input.style('background-color', '#444');
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
@@ -1144,10 +1145,11 @@ function draw() {
     textSize(24);
     fill(isCorrect ? '#32CD32' : '#FF0000');
     textFont('Courier New', 24);
-    textStyle(BOLD);  
+    textStyle(BOLD);
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
     drawStatistics();
+    drawTheme();
 
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
@@ -1156,13 +1158,20 @@ function draw() {
 function drawStatistics() {
     textSize(18);
     fill(200);
-    let textYPosition = height - 130;
+    let textYPosition = height - 100;
     text(`WPM: ${wpm}`, 40, textYPosition);
-    text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);  // Rounded to two decimal places
+    text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
-    text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 40, textYPosition + 90);  // Rounded to two decimal places
+    text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 40, textYPosition + 90);
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 120);
     text(`Press Tab to restart session`, width - 330, height - 30);
+}
+
+function drawTheme() {
+    textSize(20); 
+    fill(200);
+    textFont('Consolas'); 
+    text(`Current theme - ${theme}`, 40, height - 120); 
 }
 
 function centerCanvas() {
