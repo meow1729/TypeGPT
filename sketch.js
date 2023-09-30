@@ -1105,6 +1105,7 @@ excerpts = excerpts.concat([
 
 
 
+
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1115,7 +1116,6 @@ let testsTaken = 0;
 let testStarted = false;
 let isCorrect = true;
 let input;
-let darkMode = false;
 
 function setup() {
     let margin = 200; 
@@ -1128,16 +1128,15 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '18px');
     input.style('font-family', 'monospace');
-    input.style('color', '#000'); 
-    input.style('background-color', '#fff'); 
+    input.style('color', '#fff'); // Changed text color to white for dark mode
+    input.style('background-color', '#333'); // Changed background to dark for dark mode
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
-    input.elt.addEventListener('keydown', toggleDarkMode); // Added event listener for dark mode toggle
 }
 
 function draw() {
-    background(darkMode ? 50 : 245); 
+    background(50); // Changed background to dark
 
     textSize(24); 
 
@@ -1145,28 +1144,19 @@ function draw() {
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
-    fill(isCorrect ? 0 : 255, 0, 0);
+    fill(isCorrect ? 200 : 255, 0, 0); // Changed text color to lighter for dark mode
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
-    fill(darkMode ? 200 : 50); 
+    fill(200); // Changed text color to lighter for dark mode
     let textYPosition = height - 130;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 30);
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
     text(`Press Tab to restart session`, width - 280, height - 30); 
-    text(`Press 'D' to toggle dark mode`, 40, height - 50); 
 
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
-}
-
-function toggleDarkMode(e) {
-    if (e.key === 'd' && !testStarted) { 
-        darkMode = !darkMode;
-        input.style('color', darkMode ? '#fff' : '#000'); 
-        input.style('background-color', darkMode ? '#333' : '#fff'); 
-    }
 }
 
 
@@ -1235,4 +1225,3 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
-
