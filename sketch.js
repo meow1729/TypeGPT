@@ -1116,7 +1116,7 @@ let isCorrect = true;
 let input;
 let typedChars = 0;
 let incorrectChars = 0;
-let theme = "Vocab builder (TRUMP2024)"; 
+let theme = "Vocab builder (TRUMP2024)";
 
 function setup() {
     let margin = 200;
@@ -1129,10 +1129,10 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '20px');
     input.style('font-family', 'Courier New');
-    input.style('color', '#00FF00'); 
-    input.style('background-color', '#000000'); 
-    input.style('border', 'none'); 
-    input.style('outline', 'none'); 
+    input.style('color', '#00FF00');
+    input.style('background-color', '#000000');
+    input.style('border', 'none');
+    input.style('outline', 'none');
     input.elt.style.caretColor = "#00FF00";
 
     input.elt.addEventListener('keydown', handleEnter);
@@ -1155,7 +1155,7 @@ function draw() {
     drawStatistics();
     drawTheme();
 
-    input.position(canvas.x + 40, height - 140); // Adjusted here
+    input.position(canvas.x + 40, height - 110); // Corrected position
     input.size(width - 80);
 }
 
@@ -1163,8 +1163,8 @@ function drawStatistics() {
     textSize(14);
     fill(200);
     textFont('Courier New');
-    
-    let textYPosition = height - 60; 
+
+    let textYPosition = height - 60;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 140, textYPosition);
     text(`Tests Taken: ${testsTaken}`, 320, textYPosition);
@@ -1174,10 +1174,10 @@ function drawStatistics() {
 }
 
 function drawTheme() {
-    textSize(20); 
+    textSize(20);
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 170); // Adjusted here
+    text(`Current theme - ${theme}`, 40, height - 140); // Corrected position
 }
 
 function centerCanvas() {
@@ -1208,7 +1208,7 @@ function updateUserInput() {
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
     isCorrect = processedExcerpt.startsWith(processedUserInput);
 
-    input.style('color', isCorrect ? '#00FF00' : '#FF0000'); 
+    input.style('color', isCorrect ? '#00FF00' : '#FF0000');
 
     if (!isCorrect) {
         incorrectChars++;
@@ -1261,6 +1261,6 @@ function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
-    input.position(canvas.x + 40, height - 140); // Adjusted here
+    input.position(canvas.x + 40, height - 110); // Ensure consistent positioning
 }
 
