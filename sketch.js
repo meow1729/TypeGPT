@@ -1159,18 +1159,21 @@ function draw() {
     input.size(width - 80);
 }
 
+
+
 function drawStatistics() {
     textSize(18);
     fill(200);
     textFont('Courier New');
-    let textYPosition = height - 100;
+    let textYPosition = height - 140;  // Adjusted starting Y position
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);
-    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
-    text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 40, textYPosition + 90);
-    text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 120);
+    text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
+    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 90);
+    text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 40, textYPosition + 120);
     text(`Press Tab to restart session`, width - 330, height - 30);
 }
+
 
 function drawTheme() {
     textSize(20); 
