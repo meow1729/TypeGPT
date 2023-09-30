@@ -1117,22 +1117,6 @@ let typedChars = 0;
 let incorrectChars = 0;
 let theme = "Vocab builder (TRUMP2024)"; 
 
-let canvas;
-let currentExcerptIndex = 0;
-let userInput = "";
-let startTime;
-let wpm = 0;
-let accuracy = 100;
-let totalWPM = 0;
-let totalAccuracy = 0;
-let testsTaken = 0;
-let testStarted = false;
-let isCorrect = true;
-let input;
-let typedChars = 0;
-let incorrectChars = 0;
-let theme = "Vocab builder (TRUMP2024)"; 
-
 function setup() {
     let margin = 200;
     canvas = createCanvas(windowWidth - margin, windowHeight - margin);
@@ -1278,3 +1262,4 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
+
