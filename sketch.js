@@ -1101,7 +1101,6 @@ excerpts = excerpts.concat([
     `White Knight - A man who defends women on the internet. Trump, the universal defender; Biden, the silent white knight, brandished a sword of air.`,
     `Giga Chad - The most extreme version of "Chad". Trump was the political Giga Chad; Biden, silent observer, sketched portraits of quietude.`
 ]);
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1129,7 +1128,7 @@ function setup() {
     input.style('font-size', '20px');
     input.style('font-family', 'monospace');
     input.style('color', '#fff');
-    input.style('background-color', '#444'); // Darkened the input field background
+    input.style('background-color', '#444'); 
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
@@ -1145,7 +1144,7 @@ function draw() {
     textSize(24);
     fill(isCorrect ? '#32CD32' : '#FF0000');
     textFont('Courier New', 24);
-    textStyle(BOLD);  // Made the text bold
+    textStyle(BOLD);  
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
     drawStatistics();
@@ -1159,9 +1158,9 @@ function drawStatistics() {
     fill(200);
     let textYPosition = height - 130;
     text(`WPM: ${wpm}`, 40, textYPosition);
-    text(`Accuracy: ${accuracy}%`, 40, textYPosition + 30);
+    text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);  // Rounded to two decimal places
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
-    text(`Average Accuracy: ${Math.floor(totalAccuracy / Math.max(1, testsTaken))}%`, 40, textYPosition + 90);
+    text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 40, textYPosition + 90);  // Rounded to two decimal places
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 120);
     text(`Press Tab to restart session`, width - 330, height - 30);
 }
