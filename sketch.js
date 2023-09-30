@@ -1140,7 +1140,7 @@ function draw() {
     textSize(24); 
     textFont('Courier New, monospace'); // Set the font for the prompt
 
-    fill(220, 235, 245);  // Muted shade of sky blue for text area background
+    fill(139, 69, 19, 0.7);  // Updated to a softer, elegant shade of brown for text area background
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
