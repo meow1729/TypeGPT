@@ -1103,8 +1103,7 @@ excerpts = excerpts.concat([
 ]);
 
 
-
-
+let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
 let startTime;
@@ -1113,68 +1112,56 @@ let totalWPM = 0;
 let testsTaken = 0;
 let testStarted = false;
 let isCorrect = true;
-
-
-let canvas; 
+let input;
 
 function setup() {
-  let margin = 200; // Margin from all sides
-  canvas = createCanvas(windowWidth - margin, windowHeight - margin); 
-  createCanvas(windowWidth - margin, windowHeight - margin);
-  centerCanvas(); // Center the canvas on the screen
-  
-  selectExcerpt();
-  
-  let input = createInput();
-  input.position(margin / 2, height - 80); // Dynamically position the input box
-  input.input(updateUserInput);
-  input.size(width - 40);
-  input.style('font-size', '18px');
-  input.style('font-family', 'monospace');
-  textSize(18);
-  textFont('monospace');
-  
-  input.elt.addEventListener('keydown', handleEnter);
-  input.elt.addEventListener('keydown', restartSession);
+    let margin = 200; 
+    canvas = createCanvas(windowWidth - margin, windowHeight - margin);
+    centerCanvas();
+
+    selectExcerpt();
+    
+    input = createInput();
+    input.input(updateUserInput);
+    input.style('font-size', '18px');
+    input.style('font-family', 'monospace');
+    
+    input.elt.addEventListener('keydown', handleEnter);
+    input.elt.addEventListener('keydown', restartSession);
+}
+
+function draw() {
+    background(220);
+    fill(isCorrect ? 0 : 255, 0, 0);
+    
+    textSize(24); 
+    text(excerpts[currentExcerptIndex], 20, 40, width - 40, height - 300);
+
+    textSize(12); 
+    fill(0);
+    let textYPosition = height - 130;
+    text(`WPM: ${wpm}`, 20, textYPosition);
+    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 20, textYPosition + 20);
+    text(`Tests Taken: ${testsTaken}`, 20, textYPosition + 40);
+    text(`Press Tab to restart session`, 20, height - 30); 
+    line(20, textYPosition + 60, width - 20, textYPosition + 60);
+
+    input.position(20, textYPosition + 70);
+    input.size(width - 40);
 }
 
 function centerCanvas() {
-  let x = (windowWidth - width) / 2;
-  let y = (windowHeight - height) / 2;
-  canvas.position(x, y);
+    let x = (windowWidth - width) / 2;
+    let y = (windowHeight - height) / 2;
+    canvas.position(x, y);
 }
-
-
-function draw() {
-  background(220);
-  fill(isCorrect ? 0 : 255, 0, 0);
-
-  textSize(24); // Increased text size for the prompt
-  text(excerpts[currentExcerptIndex], 20, 40, width - 40, height - 300);
-
-  textSize(12); // Resetting text size back to default for other texts
-  fill(0);
-  text(`WPM: ${wpm}`, 20, height - 230);
-  text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 20, height - 200);
-  text(`Tests Taken: ${testsTaken}`, 20, height - 170);
-  text(`Press Tab to restart session`, 20, height - 30); 
-  line(20, height - 250, width - 20, height - 250);
-}
-
-function windowResized() {
-  let margin = 100;
-  resizeCanvas(windowWidth - margin, windowHeight - margin);
-  centerCanvas();
-}
-
-
 
 function selectExcerpt() {
-  currentExcerptIndex = Math.floor(Math.random() * excerpts.length);
-  userInput = "";
-  testStarted = false;
-  wpm = 0;
-  isCorrect = true;
+    currentExcerptIndex = Math.floor(Math.random() * excerpts.length);
+    userInput = "";
+    testStarted = false;
+    wpm = 0;
+    isCorrect = true;
 }
 
 function updateUserInput() {
@@ -1183,11 +1170,8 @@ function updateUserInput() {
         testStarted = true;
     }
     userInput = this.value();
-
-    // Handle the replacement of different types of quotation marks
     const processedUserInput = userInput.replace(/‘|’|'/g, "'");
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
-
     isCorrect = processedExcerpt.startsWith(processedUserInput);
 
     if (isCorrect && userInput.length > 0) {
@@ -1195,20 +1179,16 @@ function updateUserInput() {
     }
 }
 
-
-
 function calculateWPM() {
-  let elapsedTime = (millis() - startTime) / 1000 / 60;
-  let numWords = userInput.split(' ').length;
-  wpm = Math.floor(numWords / elapsedTime);
+    let elapsedTime = (millis() - startTime) / 1000 / 60;
+    let numWords = userInput.split(' ').length;
+    wpm = Math.floor(numWords / elapsedTime);
 }
 
 function handleEnter(e) {
     if (e.key === 'Enter' && isCorrect) {
         const cleanedUserInput = userInput.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').trim();
         const cleanedExcerpt = excerpts[currentExcerptIndex].replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').trim();
-        
-        console.log(cleanedUserInput === cleanedExcerpt);  // This should now log true if everything else is correct
 
         if (cleanedUserInput === cleanedExcerpt) {
             testsTaken++;
@@ -1219,14 +1199,19 @@ function handleEnter(e) {
     }
 }
 
-
 function restartSession(e) {
-  if (e.key === 'Tab') {
-    testsTaken = 0;
-    totalWPM = 0;
-    wpm = 0;
-    selectExcerpt();
-    this.value = '';
-    e.preventDefault();
-  }
+    if (e.key === 'Tab') {
+        testsTaken = 0;
+        totalWPM = 0;
+        wpm = 0;
+        selectExcerpt();
+        this.value = '';
+        e.preventDefault();
+    }
+}
+
+function windowResized() {
+    let margin = 200;
+    resizeCanvas(windowWidth - margin, windowHeight - margin);
+    centerCanvas();
 }
