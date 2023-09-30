@@ -1171,7 +1171,7 @@ function drawTheme() {
     textSize(20); 
     fill(200);
     textFont('Consolas'); 
-    text(`Current theme - ${theme}`, 40, height - 150);  // Changed the y-coordinate here
+    text(`Current theme - ${theme}`, 40, height - 200);  // Changed the y-coordinate here
 }
 
 function centerCanvas() {
