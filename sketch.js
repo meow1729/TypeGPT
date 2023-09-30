@@ -1129,7 +1129,6 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '20px');
     input.style('font-family', 'Courier New');
-    input.style('color', '#00FF00'); 
     input.style('background-color', '#000000'); 
     input.style('border', 'none'); 
     input.style('outline', 'none'); 
@@ -1194,6 +1193,7 @@ function selectExcerpt() {
     typedChars = 0;
     incorrectChars = 0;
     isCorrect = true;
+    input.style('color', '#00FF00');  // Ensure the text color is reset to green when a new excerpt is selected
 }
 
 function updateUserInput() {
@@ -1206,9 +1206,7 @@ function updateUserInput() {
     const processedUserInput = userInput.replace(/‘|’|'/g, "'");
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
     isCorrect = processedExcerpt.startsWith(processedUserInput);
-
-    input.style('color', isCorrect ? '#00FF00' : '#FF0000'); 
-
+    
     if (!isCorrect) {
         incorrectChars++;
     }
@@ -1220,6 +1218,9 @@ function updateUserInput() {
     if (isCorrect && userInput.length > 0) {
         calculateWPM();
     }
+
+    // Correctly placed this line here to ensure 'isCorrect' is updated before changing the color
+    input.style('color', isCorrect ? '#00FF00' : '#FF0000'); 
 }
 
 function calculateWPM() {
