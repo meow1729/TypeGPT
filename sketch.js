@@ -1146,9 +1146,10 @@ function draw() {
     text(`Press Tab to restart session`, 20, height - 30); 
     line(20, textYPosition + 60, width - 20, textYPosition + 60);
 
-    input.position(20, textYPosition + 70);
+    input.position(20, height - 100); // Adjusted this line
     input.size(width - 40);
 }
+
 
 function centerCanvas() {
     let x = (windowWidth - width) / 2;
