@@ -1139,7 +1139,7 @@ function setup() {
 function draw() {
     background(50);
 
-   fill('#3a0000');
+   fill('#002146');
     stroke(0);
     rect(20, 20, width - 40, height / 2);
 
