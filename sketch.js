@@ -1102,7 +1102,6 @@ excerpts = excerpts.concat([
     `Giga Chad - The most extreme version of "Chad". Trump was the political Giga Chad; Biden, silent observer, sketched portraits of quietude.`
 ]);
 
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1130,7 +1129,7 @@ function setup() {
     input.style('font-size', '20px');
     input.style('font-family', 'monospace');
     input.style('color', '#fff');
-    input.style('background-color', '#333');
+    input.style('background-color', '#444'); // Darkened the input field background
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
@@ -1139,27 +1138,20 @@ function setup() {
 function draw() {
     background(50);
 
-   fill('#002146');
+    fill('#002146');
     stroke(0);
     rect(20, 20, width - 40, height / 2);
 
     textSize(24);
     fill(isCorrect ? '#32CD32' : '#FF0000');
     textFont('Courier New', 24);
+    textStyle(BOLD);  // Made the text bold
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
-    drawProgress();
     drawStatistics();
 
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
-}
-
-function drawProgress() {
-    textSize(18);
-    fill(200);
-    let progress = Math.min((userInput.length / excerpts[currentExcerptIndex].length) * 100, 100).toFixed(2);
-    text(`Progress: ${progress}%`, 40, height - 230);
 }
 
 function drawStatistics() {
