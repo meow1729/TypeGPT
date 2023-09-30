@@ -1117,6 +1117,22 @@ let typedChars = 0;
 let incorrectChars = 0;
 let theme = "Vocab builder (TRUMP2024)"; 
 
+let canvas;
+let currentExcerptIndex = 0;
+let userInput = "";
+let startTime;
+let wpm = 0;
+let accuracy = 100;
+let totalWPM = 0;
+let totalAccuracy = 0;
+let testsTaken = 0;
+let testStarted = false;
+let isCorrect = true;
+let input;
+let typedChars = 0;
+let incorrectChars = 0;
+let theme = "Vocab builder (TRUMP2024)"; 
+
 function setup() {
     let margin = 200;
     canvas = createCanvas(windowWidth - margin, windowHeight - margin);
@@ -1128,12 +1144,10 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '20px');
     input.style('font-family', 'Courier New');
-    input.style('color', '#00FF00'); // Changed text color to green
-    input.style('background-color', '#000000'); // Changed background color to black
-    input.style('border', 'none'); // Removed border
-    input.style('outline', 'none'); // Removed outline
+    input.style('background-color', '#000000'); 
+    input.style('border', 'none'); 
+    input.style('outline', 'none'); 
 
-    // Optional: Green blinking cursor for a full terminal feel
     input.elt.style.caretColor = "#00FF00";
 
     input.elt.addEventListener('keydown', handleEnter);
@@ -1177,7 +1191,7 @@ function drawTheme() {
     textSize(20); 
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 220); // Corrected the y-coordinate
+    text(`Current theme - ${theme}`, 40, height - 220); 
 }
 
 function centerCanvas() {
@@ -1195,6 +1209,7 @@ function selectExcerpt() {
     typedChars = 0;
     incorrectChars = 0;
     isCorrect = true;
+    input.style('color', '#00FF00'); // Reset to green when a new excerpt is selected
 }
 
 function updateUserInput() {
@@ -1207,6 +1222,8 @@ function updateUserInput() {
     const processedUserInput = userInput.replace(/‘|’|'/g, "'");
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
     isCorrect = processedExcerpt.startsWith(processedUserInput);
+
+    input.style('color', isCorrect ? '#00FF00' : '#FF0000'); // Change color based on correctness
 
     if (!isCorrect) {
         incorrectChars++;
@@ -1261,4 +1278,3 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
-
