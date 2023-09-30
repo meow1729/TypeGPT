@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,17 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TypeGPT v0.1.0</title>
     <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
-      <style>
-    body {
-      background-color: #3a0000;
-    }
-  </style>
+    <style>
+        body {
+            background-color: #3a0000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 20px;
+            background-color: #3a0000; /* Adjust the background color to match your design */
+        }
+
+        header img {
+            height: 50px; /* Adjust logo size as needed */
+        }
+
+        main {
+            flex-grow: 1;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
 </head>
 
 <body>
+    <header>
+        <img src="logo.png" alt="Logo"> <!-- Replace with the path to your logo image -->
+        <h1>TypeGPT v0.1.0</h1>
+        <p>
+            "Don't type like a 
+            <a href="https://monkeytype.com/" target="_blank" rel="noopener noreferrer" style="color: white;">
+                monkey
+            </a>, 
+            Increase your wpm intelligently using the power of artificial intelligence LLMs"
+        </p>
+    </header>
     <main></main>
     <script src="sketch.js"></script>
 </body>
 
 </html>
+
