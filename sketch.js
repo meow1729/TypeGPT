@@ -1158,7 +1158,7 @@ function draw() {
 function drawStatistics() {
     textSize(18);
     fill(200);
-    let textYPosition = height - 100;
+    let textYPosition = height - 130;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 40, textYPosition + 30);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
@@ -1168,10 +1168,10 @@ function drawStatistics() {
 }
 
 function drawTheme() {
-    textSize(20); 
+    textSize(22); 
     fill(200);
     textFont('Consolas'); 
-    text(`Current theme - ${theme}`, 40, height - 120); 
+    text(`Current theme - ${theme}`, 40, height - 130); 
 }
 
 function centerCanvas() {
