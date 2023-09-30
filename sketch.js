@@ -1139,7 +1139,7 @@ function draw() {
     textSize(24); 
     textFont('Courier New, monospace'); // Set the font for the prompt
 
-    fill('#067f89');  // Updated to the specific shade of blue
+    fill('#FF671F');  // Updated to the saffron color
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
