@@ -1260,6 +1260,9 @@ function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
-    input.position(canvas.x + 40, height - 90);
+    if(input && canvas) {  // Added a check to ensure input and canvas are defined
+        input.position(canvas.x + 40, height - 90);
+    }
 }
+
 
