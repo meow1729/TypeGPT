@@ -1103,6 +1103,8 @@ excerpts = excerpts.concat([
 ]);
 
 
+
+
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1113,6 +1115,7 @@ let testsTaken = 0;
 let testStarted = false;
 let isCorrect = true;
 let input;
+let darkMode = false;
 
 function setup() {
     let margin = 200; 
@@ -1125,13 +1128,16 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '18px');
     input.style('font-family', 'monospace');
-    
+    input.style('color', '#000'); 
+    input.style('background-color', '#fff'); 
+
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
+    input.elt.addEventListener('keydown', toggleDarkMode); // Added event listener for dark mode toggle
 }
 
 function draw() {
-    background(245); 
+    background(darkMode ? 50 : 245); 
 
     textSize(24); 
 
@@ -1143,17 +1149,26 @@ function draw() {
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
-    fill(50); 
+    fill(darkMode ? 200 : 50); 
     let textYPosition = height - 130;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 30);
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
     text(`Press Tab to restart session`, width - 280, height - 30); 
+    text(`Press 'D' to toggle dark mode`, 40, height - 50); 
 
-    // Updated the position of the input field to ensure it fits within the canvas
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
 }
+
+function toggleDarkMode(e) {
+    if (e.key === 'd' && !testStarted) { 
+        darkMode = !darkMode;
+        input.style('color', darkMode ? '#fff' : '#000'); 
+        input.style('background-color', darkMode ? '#333' : '#fff'); 
+    }
+}
+
 
 function centerCanvas() {
     let x = (windowWidth - width) / 2;
@@ -1214,11 +1229,10 @@ function restartSession(e) {
         e.preventDefault();
     }
 }
-
 function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
-    // Add this line to reposition the input field when the window is resized
     input.position(canvas.x + 40, height - 90);
 }
+
