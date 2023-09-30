@@ -1133,13 +1133,13 @@ function setup() {
 function draw() {
     background(245); 
 
-    fill(isCorrect ? 0 : 255, 0, 0);
     textSize(24); 
 
     fill(255);
     stroke(0);
     rect(20, 20, width - 40, height / 2);
-    fill(0);
+    
+    fill(isCorrect ? 0 : 255, 0, 0);
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
@@ -1150,8 +1150,9 @@ function draw() {
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
     text(`Press Tab to restart session`, width - 280, height - 30); 
 
-    input.position(40, height - 90); 
-    input.size(width - 80); 
+    // Updated the position of the input field to ensure it fits within the canvas
+    input.position(canvas.x + 40, height - 90);
+    input.size(width - 80);
 }
 
 function centerCanvas() {
@@ -1218,4 +1219,6 @@ function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
+    // Add this line to reposition the input field when the window is resized
+    input.position(canvas.x + 40, height - 90);
 }
