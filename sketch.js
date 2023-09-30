@@ -1115,7 +1115,7 @@ let isCorrect = true;
 let input;
 
 function setup() {
-    let margin = 100; 
+    let margin = 200; 
     canvas = createCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
 
@@ -1131,25 +1131,28 @@ function setup() {
 }
 
 function draw() {
-    background(220);
+    background(245); 
+
     fill(isCorrect ? 0 : 255, 0, 0);
-    
     textSize(24); 
-    text(excerpts[currentExcerptIndex], 20, 40, width - 40, height - 300);
 
-    textSize(12); 
+    fill(255);
+    stroke(0);
+    rect(20, 20, width - 40, height / 2);
     fill(0);
+    text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
+
+    textSize(18); 
+    fill(50); 
     let textYPosition = height - 130;
-    text(`WPM: ${wpm}`, 20, textYPosition);
-    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 20, textYPosition + 20);
-    text(`Tests Taken: ${testsTaken}`, 20, textYPosition + 40);
-    text(`Press Tab to restart session`, 20, height - 30); 
-    line(20, textYPosition + 60, width - 20, textYPosition + 60);
+    text(`WPM: ${wpm}`, 40, textYPosition);
+    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 30);
+    text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
+    text(`Press Tab to restart session`, width - 280, height - 30); 
 
-    input.position(20, height - 100); // Adjusted this line
-    input.size(width - 40);
+    input.position(40, height - 90); 
+    input.size(width - 80); 
 }
-
 
 function centerCanvas() {
     let x = (windowWidth - width) / 2;
