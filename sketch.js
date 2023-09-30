@@ -1118,7 +1118,7 @@ let isCorrect = true;
 let canvas; 
 
 function setup() {
-  let margin = 100; // Margin from all sides
+  let margin = 200; // Margin from all sides
   canvas = createCanvas(windowWidth - margin, windowHeight - margin); 
   createCanvas(windowWidth - margin, windowHeight - margin);
   centerCanvas(); // Center the canvas on the screen
