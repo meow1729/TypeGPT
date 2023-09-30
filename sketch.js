@@ -1104,7 +1104,6 @@ excerpts = excerpts.concat([
 
 
 
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1140,7 +1139,7 @@ function draw() {
     textSize(24); 
     textFont('Courier New, monospace'); // Set the font for the prompt
 
-    fill(139, 69, 19, 0.7);  // Updated to a softer, elegant shade of brown for text area background
+    fill('#067f89');  // Updated to the specific shade of blue
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
