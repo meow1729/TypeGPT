@@ -1103,59 +1103,75 @@ excerpts = excerpts.concat([
 ]);
 
 
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
 let startTime;
 let wpm = 0;
+let accuracy = 100;
 let totalWPM = 0;
+let totalAccuracy = 0;
 let testsTaken = 0;
 let testStarted = false;
 let isCorrect = true;
 let input;
+let typedChars = 0;
+let incorrectChars = 0;
 
 function setup() {
-    let margin = 200; 
+    let margin = 200;
     canvas = createCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
 
     selectExcerpt();
-    
+
     input = createInput();
     input.input(updateUserInput);
-    input.style('font-size', '18px');
-    input.style('font-family', 'monospace'); // Updated to a monospace font for a coder feel
-    input.style('color', '#fff'); 
-    input.style('background-color', '#333'); 
+    input.style('font-size', '20px');
+    input.style('font-family', 'monospace');
+    input.style('color', '#fff');
+    input.style('background-color', '#333');
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
 }
 
 function draw() {
-    background(50); 
+    background(50);
 
-    textSize(24); 
-
-    fill('#FFDB58'); // Changed to mustard yellow
+    fill('#FFDB58');
     stroke(0);
     rect(20, 20, width - 40, height / 2);
-    
-    fill(isCorrect ? '#32CD32' : '#FF0000'); // Updated text colors for better visual feedback
-    textFont('Courier New', 24); // Updated font for a coder feel
-    text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
-    textSize(18); 
-    fill(200); 
-    let textYPosition = height - 130;
-    text(`WPM: ${wpm}`, 40, textYPosition);
-    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 30);
-    text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 60);
-    text(`Press Tab to restart session`, width - 280, height - 30); 
+    textSize(24);
+    fill(isCorrect ? '#32CD32' : '#FF0000');
+    textFont('Courier New', 24);
+    text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
+
+    drawProgress();
+    drawStatistics();
 
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
+}
+
+function drawProgress() {
+    textSize(18);
+    fill(200);
+    let progress = Math.min((userInput.length / excerpts[currentExcerptIndex].length) * 100, 100).toFixed(2);
+    text(`Progress: ${progress}%`, 40, height - 230);
+}
+
+function drawStatistics() {
+    textSize(18);
+    fill(200);
+    let textYPosition = height - 130;
+    text(`WPM: ${wpm}`, 40, textYPosition);
+    text(`Accuracy: ${accuracy}%`, 40, textYPosition + 30);
+    text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
+    text(`Average Accuracy: ${Math.floor(totalAccuracy / Math.max(1, testsTaken))}%`, 40, textYPosition + 90);
+    text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 120);
+    text(`Press Tab to restart session`, width - 280, height - 30);
 }
 
 function centerCanvas() {
@@ -1169,6 +1185,9 @@ function selectExcerpt() {
     userInput = "";
     testStarted = false;
     wpm = 0;
+    accuracy = 100;
+    typedChars = 0;
+    incorrectChars = 0;
     isCorrect = true;
 }
 
@@ -1178,9 +1197,18 @@ function updateUserInput() {
         testStarted = true;
     }
     userInput = this.value();
+    typedChars++;
     const processedUserInput = userInput.replace(/‘|’|'/g, "'");
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
     isCorrect = processedExcerpt.startsWith(processedUserInput);
+
+    if (!isCorrect) {
+        incorrectChars++;
+    }
+
+    if (typedChars > 0) {
+        accuracy = ((typedChars - incorrectChars) / typedChars) * 100;
+    }
 
     if (isCorrect && userInput.length > 0) {
         calculateWPM();
@@ -1201,6 +1229,7 @@ function handleEnter(e) {
         if (cleanedUserInput === cleanedExcerpt) {
             testsTaken++;
             totalWPM += wpm;
+            totalAccuracy += accuracy;
             selectExcerpt();
             this.value = '';
         }
@@ -1211,7 +1240,9 @@ function restartSession(e) {
     if (e.key === 'Tab') {
         testsTaken = 0;
         totalWPM = 0;
+        totalAccuracy = 0;
         wpm = 0;
+        accuracy = 100;
         selectExcerpt();
         this.value = '';
         e.preventDefault();
@@ -1224,4 +1255,3 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
-
