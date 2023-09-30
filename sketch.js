@@ -1115,7 +1115,7 @@ let isCorrect = true;
 let input;
 
 function setup() {
-    let margin = 200; 
+    let margin = 100; 
     canvas = createCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
 
