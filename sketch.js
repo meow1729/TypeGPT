@@ -1125,7 +1125,7 @@ function setup() {
     input = createInput();
     input.input(updateUserInput);
     input.style('font-size', '18px');
-    input.style('font-family', 'Courier New, monospace'); // Classic "coder" font
+    input.style('font-family', 'monospace'); // Updated to a monospace font for a coder feel
     input.style('color', '#fff'); 
     input.style('background-color', '#333'); 
 
@@ -1137,13 +1137,13 @@ function draw() {
     background(50); 
 
     textSize(24); 
-    textFont('Courier New, monospace'); // Set the font for the prompt
 
-    fill('#FF671F');  // Updated to the saffron color
+    fill('#FFDB58'); // Changed to mustard yellow
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
-    fill(isCorrect ? 0 : 255, isCorrect ? 128 : 0, 0); 
+    fill(isCorrect ? '#32CD32' : '#FF0000'); // Updated text colors for better visual feedback
+    textFont('Courier New', 24); // Updated font for a coder feel
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
@@ -1224,3 +1224,4 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
+
