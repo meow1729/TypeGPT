@@ -1104,6 +1104,7 @@ excerpts = excerpts.concat([
 
 
 
+
 let currentExcerptIndex = 0;
 let userInput = "";
 let startTime;
@@ -1114,7 +1115,7 @@ let testStarted = false;
 let isCorrect = true;
 
 
-
+let canvas; 
 
 function setup() {
   let margin = 100; // Margin from all sides
