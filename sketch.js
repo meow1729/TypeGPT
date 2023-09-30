@@ -1101,6 +1101,7 @@ excerpts = excerpts.concat([
     `White Knight - A man who defends women on the internet. Trump, the universal defender; Biden, the silent white knight, brandished a sword of air.`,
     `Giga Chad - The most extreme version of "Chad". Trump was the political Giga Chad; Biden, silent observer, sketched portraits of quietude.`
 ]);
+
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1128,12 +1129,10 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '20px');
     input.style('font-family', 'Courier New');
-    input.style('color', '#00FF00'); // Changed text color to green
-    input.style('background-color', '#000000'); // Changed background color to black
-    input.style('border', 'none'); // Removed border
-    input.style('outline', 'none'); // Removed outline
-
-    // Optional: Green blinking cursor for a full terminal feel
+    input.style('color', '#00FF00'); 
+    input.style('background-color', '#000000'); 
+    input.style('border', 'none'); 
+    input.style('outline', 'none'); 
     input.elt.style.caretColor = "#00FF00";
 
     input.elt.addEventListener('keydown', handleEnter);
@@ -1177,7 +1176,7 @@ function drawTheme() {
     textSize(20); 
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 220); // Corrected the y-coordinate
+    text(`Current theme - ${theme}`, 40, height - 220); 
 }
 
 function centerCanvas() {
@@ -1207,6 +1206,8 @@ function updateUserInput() {
     const processedUserInput = userInput.replace(/‘|’|'/g, "'");
     const processedExcerpt = excerpts[currentExcerptIndex].replace(/‘|’|'/g, "'");
     isCorrect = processedExcerpt.startsWith(processedUserInput);
+
+    input.style('color', isCorrect ? '#00FF00' : '#FF0000'); 
 
     if (!isCorrect) {
         incorrectChars++;
@@ -1261,4 +1262,3 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
-
