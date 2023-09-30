@@ -1155,20 +1155,16 @@ function draw() {
     drawStatistics();
     drawTheme();
 
-    input.position(canvas.x + 40, height - 90);
+    input.position(canvas.x + 40, height - 140); // Adjusted here
     input.size(width - 80);
 }
 
-
-
-
 function drawStatistics() {
-    textSize(14);  // Adjusted the text size
+    textSize(14);
     fill(200);
     textFont('Courier New');
     
-    // Modified the gaps and positions to suit the new text size and make the layout more spacious
-    let textYPosition = height - 60;
+    let textYPosition = height - 60; 
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 140, textYPosition);
     text(`Tests Taken: ${testsTaken}`, 320, textYPosition);
@@ -1177,12 +1173,11 @@ function drawStatistics() {
     text(`Press Tab to restart session`, width - 330, height - 30);
 }
 
-
 function drawTheme() {
     textSize(20); 
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 220); 
+    text(`Current theme - ${theme}`, 40, height - 170); // Adjusted here
 }
 
 function centerCanvas() {
@@ -1266,5 +1261,6 @@ function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
-    input.position(canvas.x + 40, height - 90);
+    input.position(canvas.x + 40, height - 140); // Adjusted here
 }
+
