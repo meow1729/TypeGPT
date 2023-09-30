@@ -1128,27 +1128,27 @@ function setup() {
     input.input(updateUserInput);
     input.style('font-size', '18px');
     input.style('font-family', 'monospace');
-    input.style('color', '#fff'); // Changed text color to white for dark mode
-    input.style('background-color', '#333'); // Changed background to dark for dark mode
+    input.style('color', '#fff'); 
+    input.style('background-color', '#333'); 
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
 }
 
 function draw() {
-    background(50); // Changed background to dark
+    background(50); 
 
     textSize(24); 
 
-    fill(255);
+    fill(173, 216, 230);  // Light blue color for text area background
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
-    fill(isCorrect ? 200 : 255, 0, 0); // Changed text color to lighter for dark mode
+    fill(isCorrect ? 0 : 255, isCorrect ? 128 : 0, 0);  // Dark green for correct and red for incorrect text
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
-    fill(200); // Changed text color to lighter for dark mode
+    fill(200); 
     let textYPosition = height - 130;
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 30);
@@ -1225,3 +1225,4 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
+
