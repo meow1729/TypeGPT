@@ -1115,7 +1115,7 @@ let isCorrect = true;
 let input;
 let typedChars = 0;
 let incorrectChars = 0;
-let theme = "Vocab builder (TRUMP2024)";
+let theme = "Vocab builder-TRUMP2024";
 
 function setup() {
     let margin = 200;
@@ -1176,7 +1176,7 @@ function drawTheme() {
     textSize(20);
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 90); // Corrected to move 50px down
+    text(`Current theme : ${theme}`, 40, height - 90); // Corrected to move 50px down
 }
 
 function centerCanvas() {
