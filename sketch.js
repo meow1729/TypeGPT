@@ -1115,7 +1115,7 @@ let isCorrect = true;
 let input;
 let typedChars = 0;
 let incorrectChars = 0;
-let theme = "Vocab builder-TRUMP2024";
+let theme = "Vocab builder - TRUMP2024";
 
 function setup() {
     let margin = 200;
