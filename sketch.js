@@ -1105,7 +1105,6 @@ excerpts = excerpts.concat([
 
 
 
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1127,7 +1126,7 @@ function setup() {
     input = createInput();
     input.input(updateUserInput);
     input.style('font-size', '18px');
-    input.style('font-family', 'monospace');
+    input.style('font-family', 'Courier New, monospace'); // Classic "coder" font
     input.style('color', '#fff'); 
     input.style('background-color', '#333'); 
 
@@ -1139,12 +1138,13 @@ function draw() {
     background(50); 
 
     textSize(24); 
+    textFont('Courier New, monospace'); // Set the font for the prompt
 
-    fill(173, 216, 230);  // Light blue color for text area background
+    fill(220, 235, 245);  // Muted shade of sky blue for text area background
     stroke(0);
     rect(20, 20, width - 40, height / 2);
     
-    fill(isCorrect ? 0 : 255, isCorrect ? 128 : 0, 0);  // Dark green for correct and red for incorrect text
+    fill(isCorrect ? 0 : 255, isCorrect ? 128 : 0, 0); 
     text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40); 
 
     textSize(18); 
@@ -1158,7 +1158,6 @@ function draw() {
     input.position(canvas.x + 40, height - 90);
     input.size(width - 80);
 }
-
 
 function centerCanvas() {
     let x = (windowWidth - width) / 2;
@@ -1219,10 +1218,10 @@ function restartSession(e) {
         e.preventDefault();
     }
 }
+
 function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
     input.position(canvas.x + 40, height - 90);
 }
-
