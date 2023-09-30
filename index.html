@@ -21,13 +21,19 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            text-align: center;
-            padding: 20px;
-            background-color: #3a0000; /* Adjust the background color to match your design */
+            display: flex;
+            align-items: center;
+            background-color: #3a0000;
         }
 
         header img {
-            height: 50px; /* Adjust logo size as needed */
+            height: 75px; 
+        }
+
+        header h1 {
+            margin: 0;
+            padding-left: 20px; 
+            color: white; 
         }
 
         main {
@@ -39,15 +45,8 @@
 
 <body>
     <header>
-        <img src="logo.png" alt="Logo"> <!-- Replace with the path to your logo image -->
+        <img src="logo.png" alt="Logo">
         <h1>TypeGPT v0.1.0</h1>
-        <p>
-            "Don't type like a 
-            <a href="https://monkeytype.com/" target="_blank" rel="noopener noreferrer" style="color: white;">
-                monkey
-            </a>, 
-            Increase your wpm intelligently using the power of artificial intelligence LLMs"
-        </p>
     </header>
     <main></main>
     <script src="sketch.js"></script>
