@@ -1101,7 +1101,6 @@ excerpts = excerpts.concat([
     `White Knight - A man who defends women on the internet. Trump, the universal defender; Biden, the silent white knight, brandished a sword of air.`,
     `Giga Chad - The most extreme version of "Chad". Trump was the political Giga Chad; Biden, silent observer, sketched portraits of quietude.`
 ]);
-
 let canvas;
 let currentExcerptIndex = 0;
 let userInput = "";
@@ -1155,7 +1154,7 @@ function draw() {
     drawStatistics();
     drawTheme();
 
-    input.position(canvas.x + 40, height - 110); // Corrected position
+    input.position(canvas.x + 40, height - 60); // Corrected to move 50px down
     input.size(width - 80);
 }
 
@@ -1164,20 +1163,20 @@ function drawStatistics() {
     fill(200);
     textFont('Courier New');
 
-    let textYPosition = height - 60;
+    let textYPosition = height - 40; // Corrected to move 20px down
     text(`WPM: ${wpm}`, 40, textYPosition);
     text(`Accuracy: ${accuracy.toFixed(2)}%`, 140, textYPosition);
     text(`Tests Taken: ${testsTaken}`, 320, textYPosition);
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 470, textYPosition);
     text(`Average Accuracy: ${(totalAccuracy / Math.max(1, testsTaken)).toFixed(2)}%`, 650, textYPosition);
-    text(`Press Tab to restart session`, width - 330, height - 30);
+    text(`Press Tab to restart session`, width - 330, textYPosition + 20); // Adjusted to be consistent
 }
 
 function drawTheme() {
     textSize(20);
     fill(200);
     textFont('Courier New');
-    text(`Current theme - ${theme}`, 40, height - 140); // Corrected position
+    text(`Current theme - ${theme}`, 40, height - 90); // Corrected to move 50px down
 }
 
 function centerCanvas() {
@@ -1261,6 +1260,6 @@ function windowResized() {
     let margin = 200;
     resizeCanvas(windowWidth - margin, windowHeight - margin);
     centerCanvas();
-    input.position(canvas.x + 40, height - 110); // Ensure consistent positioning
+    input.position(canvas.x + 40, height - 60); // Ensure consistent positioning
 }
 
