@@ -1171,7 +1171,7 @@ function drawStatistics() {
     text(`Average WPM: ${Math.floor(totalWPM / Math.max(1, testsTaken))}`, 40, textYPosition + 60);
     text(`Average Accuracy: ${Math.floor(totalAccuracy / Math.max(1, testsTaken))}%`, 40, textYPosition + 90);
     text(`Tests Taken: ${testsTaken}`, 40, textYPosition + 120);
-    text(`Press Tab to restart session`, width - 280, height - 30);
+    text(`Press Tab to restart session`, width - 330, height - 30);
 }
 
 function centerCanvas() {
