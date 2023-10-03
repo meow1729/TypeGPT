@@ -1139,6 +1139,44 @@ function setup() {
     input.elt.focus();
 }
 
+let canvas;
+let currentExcerptIndex = 0;
+let userInput = "";
+let startTime;
+let wpm = 0;
+let accuracy = 100;
+let totalWPM = 0;
+let totalAccuracy = 0;
+let testsTaken = 0;
+let testStarted = false;
+let isCorrect = true;
+let input;
+let typedChars = 0;
+let incorrectChars = 0;
+let theme = "Vocab builder - TRUMP2024";
+
+function setup() {
+    let margin = 200;
+    canvas = createCanvas(windowWidth - margin, windowHeight - margin);
+    centerCanvas();
+
+    selectExcerpt();
+
+    input = createInput();
+    input.input(updateUserInput);
+    input.style('font-size', '20px');
+    input.style('font-family', 'Courier New');
+    input.style('color', '#00FF00');
+    input.style('background-color', '#000000');
+    input.style('border', 'none');
+    input.style('outline', 'none');
+    input.elt.style.caretColor = "#00FF00";
+
+    input.elt.addEventListener('keydown', handleEnter);
+    input.elt.addEventListener('keydown', restartSession);
+    input.elt.focus();
+}
+
 function draw() {
     background(50);
 
@@ -1147,32 +1185,15 @@ function draw() {
     rect(20, 20, width - 40, height / 2);
 
     textSize(24);
+    fill(isCorrect ? '#32CD32' : '#FF0000');
     textFont('Courier New', 24);
     textStyle(BOLD);
-
-    let x = 40; // The x-coordinate where the text starts
-    let y = 60; // The y-coordinate where the text starts
-    let excerpt = excerpts[currentExcerptIndex];
-    for (let i = 0; i < excerpt.length; i++) {
-        if (i < userInput.length && excerpt[i] === userInput[i]) {
-            fill('#32CD32'); // Green for correct characters
-        } else {
-            fill(200); // Grey for the rest
-        }
-        
-        text(excerpt[i], x, y);
-        x += textWidth(excerpt[i]);
-
-        if (x > width - 80 && excerpt[i] === ' ') { // Wrap text to next line
-            x = 40;
-            y += 30; // Adjust this value to set the space between lines
-        }
-    }
+    text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
 
     drawStatistics();
     drawTheme();
 
-    input.position(canvas.x + 40, height - 60);
+    input.position(canvas.x + 40, height - 60); // Corrected to move 50px down
     input.size(width - 80);
 }
 
@@ -1280,4 +1301,3 @@ function windowResized() {
     centerCanvas();
     input.position(canvas.x + 40, height - 60); // Ensure consistent positioning
 }
-
