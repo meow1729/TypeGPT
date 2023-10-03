@@ -1147,15 +1147,32 @@ function draw() {
     rect(20, 20, width - 40, height / 2);
 
     textSize(24);
-    fill(isCorrect ? '#32CD32' : '#FF0000');
     textFont('Courier New', 24);
     textStyle(BOLD);
-    text(excerpts[currentExcerptIndex], 40, 60, width - 80, height / 2 - 40);
+
+    let x = 40; // The x-coordinate where the text starts
+    let y = 60; // The y-coordinate where the text starts
+    let excerpt = excerpts[currentExcerptIndex];
+    for (let i = 0; i < excerpt.length; i++) {
+        if (i < userInput.length && excerpt[i] === userInput[i]) {
+            fill('#32CD32'); // Green for correct characters
+        } else {
+            fill(200); // Grey for the rest
+        }
+        
+        text(excerpt[i], x, y);
+        x += textWidth(excerpt[i]);
+
+        if (x > width - 80 && excerpt[i] === ' ') { // Wrap text to next line
+            x = 40;
+            y += 30; // Adjust this value to set the space between lines
+        }
+    }
 
     drawStatistics();
     drawTheme();
 
-    input.position(canvas.x + 40, height - 60); // Corrected to move 50px down
+    input.position(canvas.x + 40, height - 60);
     input.size(width - 80);
 }
 
