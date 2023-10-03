@@ -1136,6 +1136,7 @@ function setup() {
 
     input.elt.addEventListener('keydown', handleEnter);
     input.elt.addEventListener('keydown', restartSession);
+    input.elt.focus();
 }
 
 function draw() {
