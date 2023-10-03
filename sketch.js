@@ -1139,44 +1139,6 @@ function setup() {
     input.elt.focus();
 }
 
-let canvas;
-let currentExcerptIndex = 0;
-let userInput = "";
-let startTime;
-let wpm = 0;
-let accuracy = 100;
-let totalWPM = 0;
-let totalAccuracy = 0;
-let testsTaken = 0;
-let testStarted = false;
-let isCorrect = true;
-let input;
-let typedChars = 0;
-let incorrectChars = 0;
-let theme = "Vocab builder - TRUMP2024";
-
-function setup() {
-    let margin = 200;
-    canvas = createCanvas(windowWidth - margin, windowHeight - margin);
-    centerCanvas();
-
-    selectExcerpt();
-
-    input = createInput();
-    input.input(updateUserInput);
-    input.style('font-size', '20px');
-    input.style('font-family', 'Courier New');
-    input.style('color', '#00FF00');
-    input.style('background-color', '#000000');
-    input.style('border', 'none');
-    input.style('outline', 'none');
-    input.elt.style.caretColor = "#00FF00";
-
-    input.elt.addEventListener('keydown', handleEnter);
-    input.elt.addEventListener('keydown', restartSession);
-    input.elt.focus();
-}
-
 function draw() {
     background(50);
 
