@@ -1,1 +1,2 @@
 # typegpt
+https://typegpt.org/
